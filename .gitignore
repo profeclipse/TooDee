@@ -1,0 +1,6 @@
+# nuisance files
+*.log
+*.swp
+
+# directories
+build/

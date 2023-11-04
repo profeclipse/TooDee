@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+# determine the project directory based on the location of this script
+MYSELF="$(basename -- "${BASH_SOURCE[0]}")"
+SCRIPTDIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+PROJDIR="$(dirname "${SCRIPTDIR}")"
+
+platform=Apple
+config=Release
+
+function usage {
+    printf "usage: %s [-p Apple|Emscripten]\n" "${MYSELF}"
+    exit 1
+}
+
+while getopts "p:c:" option
+do
+    case "${option}" in
+        p)
+            platform="${OPTARG}"
+            if [ "${platform}" != "Apple" -a "${platform}" != "Emscripten" ]
+            then
+                usage
+            fi
+            ;;
+        c)
+            config="${OPTARG}"
+            if [ "${config}" != "Release" -a "${config}" != "Debug" -a "${config}" != "Dist" ]
+            then
+                usage
+            fi
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+shift $(($OPTIND - 1))
+
+echo "building for ${platform}..."
+if [ "${platform}" == "Apple" ]
+then
+    dir="build"
+elif [ "${platform}" == "Emscripten" ]
+then
+    dir="embuild"
+    printf "Emscripten not supported yet"
+    exit 1
+fi
+
+cmake --build ${PROJDIR}/${dir} --config ${config} $@
+exit $?
+
