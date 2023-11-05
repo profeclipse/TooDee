@@ -7,6 +7,7 @@
 
 #ifdef TD_DEBUG
     #if defined(TD_PLATFORM_MACOS) || defined(TD_PLATFORM_LINUX)
+        #include <signal.h>
         #define TD_DEBUGBREAK() raise(SIGTRAP)
     #else
         #error "Platform doesn't support debugbreak yet"

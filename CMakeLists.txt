@@ -9,7 +9,6 @@ project(toodee
 set(default_build_type "Release")
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-    message(STATUS "Build Type: '${default_build_type}'.")
     set(CMAKE_BUILD_TYPE "${default_build_type}" CACHE
         STRING "Choose the type of build." FORCE)
     # Set the possible values of build type for cmake-gui
@@ -17,7 +16,13 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
         "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
+message(STATUS "Build Type: '${CMAKE_BUILD_TYPE}'.")
+
 set(CMAKE_CXX_STANDARD 17)
+
+add_compile_definitions(
+    $<$<CONFIG:Debug>:TD_DEBUG>
+    )
 
 # External Dependencies
 

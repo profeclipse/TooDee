@@ -1,6 +1,7 @@
 target_sources(toodee PRIVATE
     MacOSInput.cpp
     MacOSWindow.cpp
+    MacOSPlatformUtils.cpp
     )
 
 target_sources(toodee PUBLIC

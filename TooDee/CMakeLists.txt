@@ -1,20 +1,6 @@
 add_library(toodee STATIC)
 add_library(toodee::toodee ALIAS toodee)
 
-#file(GLOB_RECURSE sources "*.cpp")
-
-#target_sources(toodee PRIVATE
-#    ${sources}
-#    )
-
-#file(GLOB_RECURSE headers "*.h")
-
-#target_sources(toodee PUBLIC
-#    FILE_SET HEADERS
-#    FILES
-#    ${headers}
-#    )
-
 target_sources(toodee PUBLIC
     FILE_SET HEADERS
     FILES
@@ -25,6 +11,7 @@ add_subdirectory(Core)
 add_subdirectory(Events)
 add_subdirectory(Platform)
 add_subdirectory(Renderer)
+add_subdirectory(Utils)
 
 target_include_directories(toodee PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
@@ -33,12 +20,13 @@ target_include_directories(toodee PUBLIC
 
 target_compile_definitions(toodee PUBLIC
     GLFW_INCLUDE_NONE
-    TD_ENABLE_ASSERTS
     )
 
 target_link_libraries(toodee PUBLIC
     toodee::glad
+    toodee::imgui
     toodee::glfw3
+    toodee::stb_image
     spdlog::spdlog
     "-framework OpenAL"
     "-framework OpenGL"
@@ -46,4 +34,3 @@ target_link_libraries(toodee PUBLIC
     "-framework IOKit"
     "-framework CoreFoundation"
     )
-

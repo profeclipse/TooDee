@@ -1,5 +1,6 @@
-#include "TooDee.h"
-#include "TooDee/Core/EntryPoint.h"
+#include <TooDee/TooDee.h>
+#include <TooDee/Core/EntryPoint.h>
+#include "ExampleLayer.h"
 
 using namespace TooDee;
 
@@ -9,6 +10,7 @@ class SandboxApp : public Application
         SandboxApp(const ApplicationSpecification& spec)
             : Application(spec)
         {
+            PushLayer(new ExampleLayer());
         }
 
         ~SandboxApp()

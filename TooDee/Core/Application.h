@@ -3,6 +3,7 @@
 #include <string>
 #include "TooDee/Core/Base.h"
 #include "TooDee/Core/Window.h"
+#include "TooDee/Core/LayerStack.h"
 #include "TooDee/Events/Event.h"
 #include "TooDee/Events/ApplicationEvent.h"
 
@@ -36,6 +37,9 @@ namespace TooDee
 
             void OnEvent(Event& e);
 
+            void PushLayer(Layer* layer);
+            void PushOverlay(Layer* layer);
+
             void Close();
 
 
@@ -54,9 +58,11 @@ namespace TooDee
 
         private:
             ApplicationSpecification m_specification;
+            Scope<Window> m_window;
             bool m_running = true;
             bool m_minimized = false;
-            Scope<Window> m_window;
+            LayerStack m_layerStack;
+            float m_lastFrameTime = 0.0f;
 
         private:
             static Application* s_instance;

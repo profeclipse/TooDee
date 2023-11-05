@@ -3,6 +3,10 @@
 #include "TooDee/Core/Application.h"
 #include "TooDee/Core/Log.h"
 #include "TooDee/Renderer/RendererAPI.h"
+#include "TooDee/Core/TimeStep.h"
+#include "TooDee/Utils/PlatformUtils.h"
+
+#include <glad/glad.h>
 
 namespace TooDee
 {
@@ -12,6 +16,7 @@ namespace TooDee
         : m_specification(spec)
     {
 
+        TD_CORE_ASSERT(!s_instance,"Application already exists!");
         s_instance = this;
 
         if (!m_specification.workingDirectory.empty())
@@ -38,22 +43,45 @@ namespace TooDee
         dispatcher.Dispatch<WindowCloseEvent>(TD_BIND_EVENT_FN(Application::OnWindowClose));
         dispatcher.Dispatch<WindowResizeEvent>(TD_BIND_EVENT_FN(Application::OnWindowResize));
 
-#if 0
-        for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
+        for (auto it = m_layerStack.rbegin(); it != m_layerStack.rend(); ++it)
         {
             if (e.Handled)
                 break;
             (*it)->OnEvent(e);
         }
-#endif
+    }
+
+    void Application::PushLayer(Layer* layer)
+    {
+        m_layerStack.PushLayer(layer);
+        layer->OnAttach();
+    }
+
+    void Application::PushOverlay(Layer* layer)
+    {
+        m_layerStack.PushOverlay(layer);
+        layer->OnAttach();
     }
 
     void Application::Run()
     {
         while (m_running)
         {
+            float time = Time::GetTime();
+            TimeStep timestep = time - m_lastFrameTime;
+            m_lastFrameTime = time;
+
             if (!m_minimized)
             {
+                {
+                    glClearColor(1,0,1,1);
+                    glClear(GL_COLOR_BUFFER_BIT);
+
+                    for (Layer* layer : m_layerStack)
+                    {
+                        layer->OnUpdate(timestep);
+                    }
+                }
             }
 
             m_window->OnUpdate();
