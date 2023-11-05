@@ -29,6 +29,7 @@ then
     shift
 fi
 
-cmake ${options} -S . -B build $@
+CMAKE_BUILD_TYPE=Release cmake ${options} -S . -B build/Release $@
+CMAKE_BUILD_TYPE=Debug cmake ${options} -S . -B build/Debug $@
 
 exit 0

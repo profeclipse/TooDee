@@ -6,10 +6,10 @@ SCRIPTDIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 PROJDIR="$(dirname "${SCRIPTDIR}")"
 
 platform=Apple
-config=Release
+config=all
 
 function usage {
-    printf "usage: %s [-p Apple|Emscripten]\n" "${MYSELF}"
+    printf "usage: %s [-p Apple|Emscripten] [-c Debug|Release|Dist|all]\n" "${MYSELF}"
     exit 1
 }
 
@@ -25,7 +25,10 @@ do
             ;;
         c)
             config="${OPTARG}"
-            if [ "${config}" != "Release" -a "${config}" != "Debug" -a "${config}" != "Dist" ]
+            if [ "${config}" != "Release" -a
+                "${config}" != "Debug" -a
+                "${config}" != "Dist" -a
+                "${config}" != "all" ]
             then
                 usage
             fi
@@ -37,7 +40,6 @@ do
 done
 shift $(($OPTIND - 1))
 
-echo "building for ${platform}..."
 if [ "${platform}" == "Apple" ]
 then
     dir="build"
@@ -48,6 +50,21 @@ then
     exit 1
 fi
 
-cmake --build ${PROJDIR}/${dir} --config ${config} $@
-exit $?
+if [ "${config}" == "all" ]
+then
+    configs="Release Debug"
+else
+    configs="${config}"
+fi
 
+for config in ${configs}
+do
+    printf "building ${platform}:${config}...\n"
+    cmake --build ${PROJDIR}/${dir}/${config} --config ${config} $@
+    status=$?
+    if [ ${status} -ne 0 ]
+    then
+        exit ${status}
+    fi
+done
+exit $?
