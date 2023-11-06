@@ -9,6 +9,7 @@ target_sources(toodee PUBLIC
 
 add_subdirectory(Core)
 add_subdirectory(Events)
+add_subdirectory(ImGui)
 add_subdirectory(Platform)
 add_subdirectory(Renderer)
 add_subdirectory(Utils)
@@ -23,9 +24,9 @@ target_compile_definitions(toodee PUBLIC
     )
 
 target_link_libraries(toodee PUBLIC
-    toodee::glad
     toodee::imgui
     toodee::glfw3
+    toodee::glad
     toodee::stb_image
     spdlog::spdlog
     "-framework OpenAL"

@@ -12,11 +12,11 @@ class ExampleLayer : public TooDee::Layer
 
         virtual void OnUpdate(TooDee::TimeStep ts) override
         {
-            TD_INFO("ExampleLayer::Update");
+            //TD_INFO("ExampleLayer::Update");
         }
 
         virtual void OnEvent(TooDee::Event& e) override
         {
-            TD_TRACE("{0}",e);
+            //TD_TRACE("{0}",e);
         }
 };

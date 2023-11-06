@@ -26,6 +26,9 @@ namespace TooDee
 
         m_window = Window::Create(WindowProps(m_specification.name));
         m_window->SetEventCallback(TD_BIND_EVENT_FN(Application::OnEvent));
+
+        m_ImGuiLayer = new ImGuiLayer();
+        PushOverlay(m_ImGuiLayer);
     }
 
     Application::~Application()
@@ -82,6 +85,15 @@ namespace TooDee
                         layer->OnUpdate(timestep);
                     }
                 }
+
+                m_ImGuiLayer->Begin();
+                {
+                    for (Layer* layer : m_layerStack)
+                    {
+                        layer->OnImGuiRender();
+                    }
+                }
+                m_ImGuiLayer->End();
             }
 
             m_window->OnUpdate();

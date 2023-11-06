@@ -4,6 +4,7 @@
 #include "TooDee/Core/Base.h"
 #include "TooDee/Core/Window.h"
 #include "TooDee/Core/LayerStack.h"
+#include "TooDee/ImGui/ImGuiLayer.h"
 #include "TooDee/Events/Event.h"
 #include "TooDee/Events/ApplicationEvent.h"
 
@@ -42,6 +43,7 @@ namespace TooDee
 
             void Close();
 
+            ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
 
             static Application& Get()	{ return *s_instance; }
 
@@ -59,6 +61,7 @@ namespace TooDee
         private:
             ApplicationSpecification m_specification;
             Scope<Window> m_window;
+            ImGuiLayer* m_ImGuiLayer;
             bool m_running = true;
             bool m_minimized = false;
             LayerStack m_layerStack;

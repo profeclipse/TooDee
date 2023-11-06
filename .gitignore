@@ -1,6 +1,7 @@
 # nuisance files
 *.log
 *.swp
+*.ini
 
 # directories
 build/
