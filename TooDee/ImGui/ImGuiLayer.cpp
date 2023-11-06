@@ -87,6 +87,11 @@ namespace TooDee {
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
         //ImGuizmo::BeginFrame();
+
+        // Demo - REMOVE THIS!!!
+        static bool show = true;
+        ImGui::ShowDemoWindow(&show);
+
     }
 
     void ImGuiLayer::End()
@@ -94,10 +99,6 @@ namespace TooDee {
         ImGuiIO& io = ImGui::GetIO();
         Application& app = Application::Get();
         io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(),(float)app.GetWindow().GetHeight());
-
-        static bool show = true;
-        // Demo - REMOVE THIS!!!
-        ImGui::ShowDemoWindow(&show);
 
         // Rendering
         ImGui::Render();
