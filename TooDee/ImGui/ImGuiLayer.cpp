@@ -87,11 +87,6 @@ namespace TooDee {
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
         //ImGuizmo::BeginFrame();
-
-        // Demo - REMOVE THIS!!!
-        static bool show = true;
-        ImGui::ShowDemoWindow(&show);
-
     }
 
     void ImGuiLayer::End()

@@ -17,6 +17,7 @@ add_subdirectory(Utils)
 target_include_directories(toodee PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../vendor/glm>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../vendor>
     )
 
 target_compile_definitions(toodee PUBLIC
