@@ -1,3 +1,5 @@
+#pragma once
+
 #include "TooDee/Renderer/Renderer.h"
 #if 0
 #include "TooDee/Renderer/Renderer2D.h"
