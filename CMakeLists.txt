@@ -5,6 +5,8 @@ project(toodee
     LANGUAGES CXX C
     )
 
+set(CMAKE_CXX_STANDARD 17)
+
 # Set a default build type if none was specified
 set(default_build_type "Release")
 
@@ -17,8 +19,6 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 message(STATUS "Build Type: '${CMAKE_BUILD_TYPE}'.")
-
-set(CMAKE_CXX_STANDARD 17)
 
 add_compile_definitions(
     $<$<CONFIG:Debug>:TD_DEBUG>
