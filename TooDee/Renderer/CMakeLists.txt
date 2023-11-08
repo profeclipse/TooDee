@@ -3,6 +3,7 @@ target_sources(toodee PRIVATE
     OrthographicCamera.cpp
     RendererAPI.cpp
     Renderer.cpp
+    Shader.cpp
     )
 
 target_sources(toodee PUBLIC
@@ -13,4 +14,5 @@ target_sources(toodee PUBLIC
     OrthographicCamera.h
     RendererAPI.h
     Renderer.h
+    Shader.h
     )

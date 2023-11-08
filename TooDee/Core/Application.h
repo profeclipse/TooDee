@@ -67,6 +67,8 @@ namespace TooDee
             LayerStack m_layerStack;
             float m_lastFrameTime = 0.0f;
 
+            unsigned int m_vertexArray,m_vertexBuffer,m_indexBuffer;
+
         private:
             static Application* s_instance;
             friend int ::main(int argc,char** argv);
