@@ -2,6 +2,7 @@ target_sources(toodee PRIVATE
     GraphicsContext.cpp
     OrthographicCamera.cpp
     RendererAPI.cpp
+    Renderer.cpp
     )
 
 target_sources(toodee PUBLIC
@@ -11,4 +12,5 @@ target_sources(toodee PUBLIC
     GraphicsContext.h
     OrthographicCamera.h
     RendererAPI.h
+    Renderer.h
     )

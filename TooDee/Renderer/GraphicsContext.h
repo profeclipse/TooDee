@@ -1,6 +1,7 @@
 #pragma once
 
 #include "TooDee/Core/Base.h"
+#include "TooDee/Renderer/Renderer.h"
 
 namespace TooDee {
     class GraphicsContext

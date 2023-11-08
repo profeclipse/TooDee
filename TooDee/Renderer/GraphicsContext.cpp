@@ -5,8 +5,7 @@
 namespace TooDee {
     Scope<GraphicsContext> GraphicsContext::Create(void* window)
     {
-        // TODO: should this be Renderer::GetAPI()???
-        switch (RendererAPI::GetAPI())
+        switch (Renderer::GetAPI())
         {
             case RendererAPI::API::None:
                 TD_CORE_ASSERT(false,"RendererAPI::None is currently not supported!");

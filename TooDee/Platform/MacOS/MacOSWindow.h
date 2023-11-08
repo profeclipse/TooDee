@@ -1,8 +1,9 @@
 #pragma once
 
-#include <GLFW/glfw3.h>
 #include "TooDee/Core/Window.h"
 #include "TooDee/Renderer/GraphicsContext.h"
+
+struct GLFWwindow;
 
 namespace TooDee
 {

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <GLFW/glfw3.h>
 #include "TooDee/Platform/MacOS/MacOSWindow.h"
 #include "TooDee/Events/ApplicationEvent.h"
 #include "TooDee/Events/KeyEvent.h"
