@@ -7,6 +7,7 @@
 #include "TooDee/ImGui/ImGuiLayer.h"
 #include "TooDee/Events/Event.h"
 #include "TooDee/Events/ApplicationEvent.h"
+#include "TooDee/Renderer/Shader.h"
 
 int main(int argc,char **argv);
 
@@ -68,6 +69,8 @@ namespace TooDee
             float m_lastFrameTime = 0.0f;
 
             unsigned int m_vertexArray,m_vertexBuffer,m_indexBuffer;
+
+            Scope<Shader> m_shader;
 
         private:
             static Application* s_instance;
