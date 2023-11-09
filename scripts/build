@@ -60,7 +60,7 @@ fi
 for config in ${configs}
 do
     printf "building ${platform}:${config}...\n"
-    cmake --build ${PROJDIR}/${dir}/${config} --config ${config} $@
+    cmake --build ${PROJDIR}/${dir}/${config} --config ${config} -j4 $@
     status=$?
     if [ ${status} -ne 0 ]
     then
