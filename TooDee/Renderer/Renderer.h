@@ -3,8 +3,8 @@
 #include "TooDee/Renderer/OrthographicCamera.h"
 #if 0
 #include "TooDee/Renderer/RenderCommand.h"
-#include "TooDee/Renderer/Shader.h"
 #endif
+#include "TooDee/Renderer/Shader.h"
 
 #include "TooDee/Renderer/RendererAPI.h"
 
@@ -29,9 +29,9 @@ namespace TooDee {
         private:
             struct SceneData
             {
-                glm::mat4 ViewProjectionMatrix;
+                glm::mat4 viewProjectionMatrix;
             };
 
-            static Scope<SceneData> s_SceneData;
+            static Scope<SceneData> s_sceneData;
     };
 }
