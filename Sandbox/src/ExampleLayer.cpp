@@ -19,9 +19,9 @@ void ExampleLayer::OnEvent(TooDee::Event& e)
 void ExampleLayer::OnImGuiRender()
 {
     bool state = true;
-    ImGui::ShowDemoWindow(&state);
+    //ImGui::ShowDemoWindow(&state);
 
-    ImGui::Begin("Hello");
-    ImGui::Text("Hello, World!");
-    ImGui::End();
+    //ImGui::Begin("Hello");
+    //ImGui::Text("Hello, World!");
+    //ImGui::End();
 }

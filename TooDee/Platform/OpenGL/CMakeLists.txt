@@ -1,6 +1,7 @@
 target_sources(toodee PRIVATE
     OpenGLContext.cpp
     OpenGLRendererAPI.cpp
+    OpenGLShader.cpp
     )
 
 target_sources(toodee PUBLIC
@@ -8,4 +9,5 @@ target_sources(toodee PUBLIC
     FILES
     OpenGLContext.h
     OpenGLRendererAPI.h
+    OpenGLShader.h
     )

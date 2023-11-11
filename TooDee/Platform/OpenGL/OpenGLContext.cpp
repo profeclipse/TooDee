@@ -7,7 +7,7 @@ namespace TooDee {
     OpenGLContext::OpenGLContext(GLFWwindow* windowHandle)
         : m_windowHandle(windowHandle)
     {
-        TD_CORE_ASSERT(windowHandle,"Window handle is null!")
+        TD_CORE_ASSERT(windowHandle,"Window handle is null!");
     }
 
     void OpenGLContext::Init()

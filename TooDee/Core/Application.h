@@ -70,7 +70,7 @@ namespace TooDee
 
             unsigned int m_vertexArray,m_vertexBuffer,m_indexBuffer;
 
-            Scope<Shader> m_shader;
+            Ref<Shader> m_shader;
 
         private:
             static Application* s_instance;

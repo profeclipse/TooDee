@@ -83,7 +83,8 @@ namespace TooDee
 			}
 		)";
 
-		m_shader.reset(new Shader(vertexSrc, fragmentSrc));
+		//m_shader = Shader::Create("default",vertexSrc, fragmentSrc);
+        m_shader = Shader::Create("assets/shaders/FlatColor.glsl");
     }
 
     Application::~Application()
@@ -136,6 +137,7 @@ namespace TooDee
                     glClear(GL_COLOR_BUFFER_BIT);
 
                     m_shader->Bind();
+                    m_shader->SetFloat4("u_Color",{0.2f,0.4f,0.8f,1.0f});
                     glBindVertexArray(m_vertexArray);
                     glDrawElements(GL_TRIANGLES,3,GL_UNSIGNED_INT,nullptr);
 
