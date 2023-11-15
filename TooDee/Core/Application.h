@@ -8,6 +8,7 @@
 #include "TooDee/Events/Event.h"
 #include "TooDee/Events/ApplicationEvent.h"
 #include "TooDee/Renderer/Shader.h"
+#include "TooDee/Renderer/Buffer.h"
 
 int main(int argc,char **argv);
 
@@ -68,9 +69,11 @@ namespace TooDee
             LayerStack m_layerStack;
             float m_lastFrameTime = 0.0f;
 
-            unsigned int m_vertexArray,m_vertexBuffer,m_indexBuffer;
+            unsigned int m_vertexArray;
 
             Ref<Shader> m_shader;
+            Ref<VertexBuffer> m_vertexBuffer;
+            Ref<IndexBuffer> m_indexBuffer;
 
         private:
             static Application* s_instance;

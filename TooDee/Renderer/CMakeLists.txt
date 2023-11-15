@@ -1,4 +1,5 @@
 target_sources(toodee PRIVATE
+    Buffer.cpp
     GraphicsContext.cpp
     OrthographicCamera.cpp
     RendererAPI.cpp
@@ -9,6 +10,7 @@ target_sources(toodee PRIVATE
 target_sources(toodee PUBLIC
     FILE_SET HEADERS
     FILES
+    Buffer.h
     Camera.h
     GraphicsContext.h
     OrthographicCamera.h
