@@ -3,6 +3,7 @@
 #include "TooDee/Core/Application.h"
 #include "TooDee/Core/Log.h"
 #include "TooDee/Renderer/RendererAPI.h"
+#include "TooDee/Renderer/Renderer.h"
 #include "TooDee/Core/TimeStep.h"
 #include "TooDee/Utils/PlatformUtils.h"
 
@@ -16,18 +17,30 @@ namespace TooDee
     {
         switch (type)
         {
-            case TooDee::ShaderDataType::Float:     return GL_FLOAT;
-            case TooDee::ShaderDataType::Float2:    return GL_FLOAT;
-            case TooDee::ShaderDataType::Float3:    return GL_FLOAT;
-            case TooDee::ShaderDataType::Float4:    return GL_FLOAT;
-            case TooDee::ShaderDataType::Mat3:      return GL_FLOAT;
-            case TooDee::ShaderDataType::Mat4:      return GL_FLOAT;
-            case TooDee::ShaderDataType::Int:       return GL_INT;
-            case TooDee::ShaderDataType::Int2:      return GL_INT;
-            case TooDee::ShaderDataType::Int3:      return GL_INT;
-            case TooDee::ShaderDataType::Int4:      return GL_INT;
-            case TooDee::ShaderDataType::Bool:      return GL_BOOL;
-            case TooDee::ShaderDataType::None:      return 0;
+            case ShaderDataType::Float:
+                return GL_FLOAT;
+            case ShaderDataType::Float2:
+                return GL_FLOAT;
+            case ShaderDataType::Float3:
+                return GL_FLOAT;
+            case ShaderDataType::Float4:
+                return GL_FLOAT;
+            case ShaderDataType::Mat3:
+                return GL_FLOAT;
+            case ShaderDataType::Mat4:
+                return GL_FLOAT;
+            case ShaderDataType::Int:
+                return GL_INT;
+            case ShaderDataType::Int2:
+                return GL_INT;
+            case ShaderDataType::Int3:
+                return GL_INT;
+            case ShaderDataType::Int4:
+                return GL_INT;
+            case ShaderDataType::Bool:
+                return GL_BOOL;
+            case ShaderDataType::None:
+                return 0;
         }
 
         TD_CORE_ASSERT(false, "Unknown ShaderDataType!");
@@ -142,8 +155,10 @@ namespace TooDee
     void Application::OnEvent(Event& e)
     {
         EventDispatcher dispatcher(e);
-        dispatcher.Dispatch<WindowCloseEvent>(TD_BIND_EVENT_FN(Application::OnWindowClose));
-        dispatcher.Dispatch<WindowResizeEvent>(TD_BIND_EVENT_FN(Application::OnWindowResize));
+        dispatcher.Dispatch<WindowCloseEvent>(
+                TD_BIND_EVENT_FN(Application::OnWindowClose));
+        dispatcher.Dispatch<WindowResizeEvent>(
+                TD_BIND_EVENT_FN(Application::OnWindowResize));
 
         for (auto it = m_layerStack.rbegin(); it != m_layerStack.rend(); ++it)
         {
@@ -219,7 +234,7 @@ namespace TooDee
         }
 
         m_minimized = false;
-        //Renderer::OnWindowResize(e.GetWidth(),e.GetHeight());
+        Renderer::OnWindowResize(e.GetWidth(),e.GetHeight());
 
         return false;
     }
