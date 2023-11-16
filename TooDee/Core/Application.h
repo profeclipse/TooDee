@@ -74,8 +74,6 @@ namespace TooDee
 
             Scope<RendererAPI> m_rendererAPI;
             Ref<Shader> m_shader;
-            Ref<VertexBuffer> m_vertexBuffer;
-            Ref<IndexBuffer> m_indexBuffer;
             Ref<VertexArray> m_vertexArray;
 
         private:

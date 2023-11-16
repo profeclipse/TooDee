@@ -40,26 +40,24 @@ namespace TooDee
              0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
         };
 
-        m_vertexBuffer = VertexBuffer::Create(vertices,sizeof(vertices));
+        Ref<VertexBuffer> vertexBuffer = VertexBuffer::Create(vertices,
+                sizeof(vertices));
 
-        {
-            BufferLayout layout = {
+        vertexBuffer->SetLayout({
                 { ShaderDataType::Float3,"a_Position" },
                 { ShaderDataType::Float4,"a_Color" }
-            };
-
-            m_vertexBuffer->SetLayout(layout);
-        }
+            });
 
         uint32_t indices[3] = {
             0,1,2
         };
 
-        m_indexBuffer = IndexBuffer::Create(indices,sizeof(indices)/sizeof(uint32_t));
+        Ref<IndexBuffer> indexBuffer = IndexBuffer::Create(indices,
+                sizeof(indices)/sizeof(uint32_t));
 
         m_vertexArray = VertexArray::Create();
-        m_vertexArray->AddVertexBuffer(m_vertexBuffer);
-        m_vertexArray->SetIndexBuffer(m_indexBuffer);
+        m_vertexArray->AddVertexBuffer(vertexBuffer);
+        m_vertexArray->SetIndexBuffer(indexBuffer);
 
         std::string vertexSrc = R"(
 			#version 330 core
@@ -147,7 +145,9 @@ namespace TooDee
 
                 m_shader->Bind();
                 m_vertexArray->Bind();
-                glDrawElements(GL_TRIANGLES,m_indexBuffer->GetCount(),GL_UNSIGNED_INT,
+                glDrawElements(GL_TRIANGLES,
+                        m_vertexArray->GetIndexBuffer()->GetCount(),
+                        GL_UNSIGNED_INT,
                         nullptr);
 
                 for (Layer* layer : m_layerStack)
