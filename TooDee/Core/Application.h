@@ -7,8 +7,10 @@
 #include "TooDee/ImGui/ImGuiLayer.h"
 #include "TooDee/Events/Event.h"
 #include "TooDee/Events/ApplicationEvent.h"
+#include "TooDee/Renderer/RendererAPI.h"
 #include "TooDee/Renderer/Shader.h"
 #include "TooDee/Renderer/Buffer.h"
+#include "TooDee/Renderer/VertexArray.h"
 
 int main(int argc,char **argv);
 
@@ -64,16 +66,17 @@ namespace TooDee
             ApplicationSpecification m_specification;
             Scope<Window> m_window;
             ImGuiLayer* m_ImGuiLayer;
+
             bool m_running = true;
             bool m_minimized = false;
             LayerStack m_layerStack;
             float m_lastFrameTime = 0.0f;
 
-            unsigned int m_vertexArray;
-
+            Scope<RendererAPI> m_rendererAPI;
             Ref<Shader> m_shader;
             Ref<VertexBuffer> m_vertexBuffer;
             Ref<IndexBuffer> m_indexBuffer;
+            Ref<VertexArray> m_vertexArray;
 
         private:
             static Application* s_instance;

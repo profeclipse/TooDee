@@ -3,6 +3,7 @@ target_sources(toodee PRIVATE
     OpenGLContext.cpp
     OpenGLRendererAPI.cpp
     OpenGLShader.cpp
+    OpenGLVertexArray.cpp
     )
 
 target_sources(toodee PUBLIC
@@ -12,4 +13,5 @@ target_sources(toodee PUBLIC
     OpenGLContext.h
     OpenGLRendererAPI.h
     OpenGLShader.h
+    OpenGLVertexArray.h
     )

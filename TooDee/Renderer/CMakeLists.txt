@@ -5,6 +5,7 @@ target_sources(toodee PRIVATE
     RendererAPI.cpp
     Renderer.cpp
     Shader.cpp
+    VertexArray.cpp
     )
 
 target_sources(toodee PUBLIC
@@ -17,4 +18,5 @@ target_sources(toodee PUBLIC
     RendererAPI.h
     Renderer.h
     Shader.h
+    VertexArray.h
     )
