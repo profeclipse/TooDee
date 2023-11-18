@@ -62,7 +62,6 @@ namespace TooDee {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
-#if 0
     void OpenGLRendererAPI::DrawIndexed(const Ref<VertexArray>& vertexArray,
             uint32_t indexCount)
     {
@@ -78,7 +77,6 @@ namespace TooDee {
         vertexArray->Bind();
         glDrawArrays(GL_LINES,0,vertexCount);
     }
-#endif
 
     void OpenGLRendererAPI::SetLineWidth(float width)
     {

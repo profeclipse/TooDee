@@ -1,4 +1,5 @@
 #include "TooDee/Renderer/Renderer.h"
+#include "TooDee/Renderer/RenderCommand.h"
 #if 0
 #include "TooDee/Renderer/Renderer2D.h"
 #endif
@@ -38,16 +39,18 @@ namespace TooDee {
     {
     }
 
-#if 0
+    void Renderer::Flush()
+    {
+    }
+
     void Renderer::Submit(const Ref<Shader>& shader,const Ref<VertexArray>& vertexArray,
             const glm::mat4& transform)
     {
         shader->Bind();
-        shader->SetMat4("u_ViewProjection",s_sceneData->viewProjectionMatrix);
-        shader->SetMat4("u_Transform",transform);
+        //shader->SetMat4("u_ViewProjection",s_sceneData->viewProjectionMatrix);
+        //shader->SetMat4("u_Transform",transform);
 
         vertexArray->Bind();
         RenderCommand::DrawIndexed(vertexArray);
     }
-#endif
 }

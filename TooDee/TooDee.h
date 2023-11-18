@@ -20,6 +20,7 @@
 // -----------------------------------
 
 #include "TooDee/Renderer/Renderer.h"
+#include "TooDee/Renderer/RenderCommand.h"
 
 #include "TooDee/Renderer/Buffer.h"
 #include "TooDee/Renderer/Shader.h"
