@@ -48,9 +48,9 @@ namespace TooDee
 
         for (auto it = m_layerStack.rbegin(); it != m_layerStack.rend(); ++it)
         {
+            (*it)->OnEvent(e);
             if (e.Handled)
                 break;
-            (*it)->OnEvent(e);
         }
     }
 

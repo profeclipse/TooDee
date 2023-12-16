@@ -7,6 +7,8 @@
 #include "TooDee/Core/Log.h"
 #include "TooDee/Core/Assert.h"
 
+#include "TooDee/Utils/PlatformUtils.h"
+
 #include "TooDee/Core/TimeStep.h"
 
 #include "TooDee/Core/Input.h"
@@ -25,5 +27,6 @@
 #include "TooDee/Renderer/Buffer.h"
 #include "TooDee/Renderer/Shader.h"
 #include "TooDee/Renderer/VertexArray.h"
+#include "TooDee/Renderer/OrthographicCamera.h"
 
 // -----------------------------------

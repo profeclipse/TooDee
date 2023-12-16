@@ -4,7 +4,7 @@
 using namespace TooDee;
 
 ExampleLayer::ExampleLayer()
-    : Layer("Example"), m_camera(-1.0f,1.0f,-1.0f,1.0f)
+    : Layer("Example"), m_camera(-1.6f,1.6f,-0.9f,0.9f),m_cameraPosition(0.0f,0.0f,0.0f)
 {
     float vertices[3 * 7] = {
         -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -39,6 +39,8 @@ void ExampleLayer::OnUpdate(TooDee::TimeStep ts)
     RenderCommand::SetClearColor({0.0,0.3,0.3,1});
     RenderCommand::Clear();
 
+    m_camera.SetPosition(m_cameraPosition);
+
     Renderer::BeginScene(m_camera);
     Renderer::Submit(m_shader,m_vertexArray);
     Renderer::EndScene();
@@ -48,11 +50,38 @@ void ExampleLayer::OnUpdate(TooDee::TimeStep ts)
 
 void ExampleLayer::OnEvent(TooDee::Event& e)
 {
+    EventDispatcher dispatcher(e);
+    dispatcher.Dispatch<KeyPressedEvent>(TD_BIND_EVENT_FN(
+                ExampleLayer::OnKeyPressedEvent));
+}
+
+bool ExampleLayer::OnKeyPressedEvent(KeyPressedEvent& e)
+{
+    if (e.GetKeyCode() == Key::Left)
+    {
+        m_cameraPosition.x -= m_cameraSpeed;
+    }
+    else if (e.GetKeyCode() == Key::Right)
+    {
+        m_cameraPosition.x += m_cameraSpeed;
+    }
+    else if (e.GetKeyCode() == Key::Down)
+    {
+        m_cameraPosition.y -= m_cameraSpeed;
+    }
+    else if (e.GetKeyCode() == Key::Up)
+    {
+        m_cameraPosition.y += m_cameraSpeed;
+    }
+    
+    return false;
 }
 
 void ExampleLayer::OnImGuiRender()
 {
+#if 0
     ImGui::Begin("Stats for Nerds");
     ImGui::Text("Hello, World!");
     ImGui::End();
+#endif
 }

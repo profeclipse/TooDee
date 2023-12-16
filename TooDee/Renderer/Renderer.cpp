@@ -50,7 +50,6 @@ namespace TooDee {
         shader->SetMat4("u_ViewProjection",s_sceneData->viewProjectionMatrix);
         shader->SetMat4("u_Transform",transform);
 
-        vertexArray->Bind();
         RenderCommand::DrawIndexed(vertexArray);
     }
 }
