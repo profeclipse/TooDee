@@ -73,6 +73,10 @@ bool ExampleLayer::OnKeyPressedEvent(KeyPressedEvent& e)
     {
         m_cameraPosition.y += m_cameraSpeed;
     }
+    else if (e.GetKeyCode() == Key::Escape)
+    {
+        Application::Get().Close();
+    }
     
     return false;
 }
