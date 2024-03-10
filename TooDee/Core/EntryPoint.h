@@ -6,9 +6,9 @@
 
 extern TooDee::Application* TooDee::CreateApplication(ApplicationCommandLineArgs args);
 
-#if defined(TD_PLATFORM_MACOS)
+#if defined(TD_PLATFORM_WINDOWS) || defined(TD_PLATFORM_MACOS)
 
-int main(int argc, char** argv)
+int main(int argc,char** argv)
 {
     TooDee::Log::Init();
 

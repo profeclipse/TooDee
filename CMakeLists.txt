@@ -22,6 +22,7 @@ message(STATUS "Build Type: '${CMAKE_BUILD_TYPE}'.")
 
 add_compile_definitions(
     $<$<CONFIG:Debug>:TD_DEBUG>
+    _SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING
     )
 
 # External Dependencies
@@ -30,7 +31,7 @@ include(FetchContent)
 
 FetchContent_Declare(spdlog
     GIT_REPOSITORY https://github.com/gabime/spdlog.git
-    GIT_TAG v1.12.0
+    GIT_TAG v1.13.0
     )
 
 FetchContent_MakeAvailable(spdlog)

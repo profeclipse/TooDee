@@ -22,7 +22,7 @@ Application* TooDee::CreateApplication(ApplicationCommandLineArgs args)
 {
     ApplicationSpecification spec;
     spec.name = "Sandbox";
-    spec.workingDirectory = "/Users/davidhunt/Projects/TooDee/Sandbox";
+    spec.workingDirectory = "C:/Users/david/Projects/TooDee/Sandbox";
     spec.commandLineArgs = args;
 
     return new SandboxApp(spec);

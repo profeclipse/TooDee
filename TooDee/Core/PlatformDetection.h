@@ -1,6 +1,12 @@
 #pragma once
 
-#if defined(__APPLE__) || defined(__MACH__)
+#ifdef _WIN32
+    #ifdef _WIN64
+        #define TD_PLATFORM_WINDOWS
+    #else
+        #error "x86 builds are not supported"
+    #endif
+#elif defined(__APPLE__) || defined(__MACH__)
     #include <TargetConditionals.h>
     #if TARGET_IPHONE_SIMULATOR == 1
         #error "IOS simiulator not supported"
@@ -11,9 +17,6 @@
     #else
         #error "Unknown Apple platform"
     #endif
-#elif _WIN32
-    #define TD_PLATFGORM_WINDOWS
-    #error "Windows not supported"
 #elif defined(__ANDROID__)
     #define TD_PLATFORM_ANDROID
     #error "Android not supported"

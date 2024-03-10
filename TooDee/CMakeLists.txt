@@ -30,9 +30,4 @@ target_link_libraries(toodee PUBLIC
     toodee::glad
     toodee::stb_image
     spdlog::spdlog
-    "-framework OpenAL"
-    "-framework OpenGL"
-    "-framework Cocoa"
-    "-framework IOKit"
-    "-framework CoreFoundation"
     )
