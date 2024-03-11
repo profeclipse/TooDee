@@ -2,7 +2,6 @@
 #include "TooDee/Platform/OpenGL/OpenGLRendererAPI.h"
 
 namespace TooDee {
-#if 0
     void OpenGLMessageCallback(
             unsigned source,
             unsigned type,
@@ -22,19 +21,16 @@ namespace TooDee {
 
         TD_CORE_ASSERT(false, "Unknown severity level!");
     }
-#endif
 
     void OpenGLRendererAPI::Init()
     {
 #ifdef TD_DEBUG
-#if 0
         glEnable(GL_DEBUG_OUTPUT);
         glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
         glDebugMessageCallback(OpenGLMessageCallback,nullptr);
 
         glDebugMessageControl(GL_DONT_CARE,GL_DONT_CARE,GL_DEBUG_SEVERITY_NOTIFICATION,0,
                 NULL, GL_FALSE);
-#endif
 #endif
 
         glEnable(GL_BLEND);
