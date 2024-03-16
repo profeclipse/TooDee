@@ -61,7 +61,6 @@ ExampleLayer::ExampleLayer()
     m_textureShader->SetInt("u_Texture",0);
 
     m_texture = Texture2D::Create("assets/textures/Checkerboard.png");
-    //m_texture = Texture2D::Create("assets/textures/ChernoLogo.png");
 }
 
 void ExampleLayer::OnUpdate(TooDee::TimeStep ts)
