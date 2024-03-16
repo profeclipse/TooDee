@@ -31,7 +31,37 @@ ExampleLayer::ExampleLayer()
     m_vertexArray->AddVertexBuffer(vertexBuffer);
     m_vertexArray->SetIndexBuffer(indexBuffer);
 
+    m_squareVertexArray = VertexArray::Create();
+
+    float squareVertices[5*4] = {
+        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+         0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+         0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+        -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
+    };
+
+    Ref<VertexBuffer> squareVertexBuffer = VertexBuffer::Create(squareVertices,
+            sizeof(squareVertices));
+
+    squareVertexBuffer->SetLayout({
+            { TooDee::ShaderDataType::Float3, "a_Position" },
+            { TooDee::ShaderDataType::Float2, "a_TexCoord" }
+    });
+    m_squareVertexArray->AddVertexBuffer(squareVertexBuffer);
+
+    uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+    Ref<IndexBuffer> squareIndexBuffer = IndexBuffer::Create(squareIndices,sizeof(squareIndices)/sizeof(uint32_t));
+    m_squareVertexArray->SetIndexBuffer(squareIndexBuffer);
+
     m_shader = Shader::Create("assets/shaders/Default.glsl");
+    m_flatColorShader = Shader::Create("assets/shaders/FlatColorTest.glsl");
+    m_textureShader = Shader::Create("assets/shaders/TextureTest.glsl");
+
+    m_textureShader->Bind();
+    m_textureShader->SetInt("u_Texture",0);
+
+    m_texture = Texture2D::Create("assets/textures/Checkerboard.png");
+    //m_texture = Texture2D::Create("assets/textures/ChernoLogo.png");
 }
 
 void ExampleLayer::OnUpdate(TooDee::TimeStep ts)
@@ -42,7 +72,25 @@ void ExampleLayer::OnUpdate(TooDee::TimeStep ts)
     m_camera.SetPosition(m_cameraPosition);
 
     Renderer::BeginScene(m_camera);
-    Renderer::Submit(m_shader,m_vertexArray);
+
+    glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+
+    m_flatColorShader->Bind();
+    m_flatColorShader->SetFloat3("u_Color", m_squareColor);
+
+    for (int y=0; y<20; y++)
+    {
+        for (int x=0; x<20; x++)
+        {
+            glm::vec3 pos(x*0.11f,y*0.11f,0.0f);
+            glm::mat4 transform = glm::translate(glm::mat4(1.0f),pos) * scale;
+            Renderer::Submit(m_flatColorShader,m_squareVertexArray,transform);
+        }
+    }
+
+    m_texture->Bind();
+    Renderer::Submit(m_textureShader,m_squareVertexArray,glm::scale(glm::mat4(1.0f),glm::vec3(1.0f)));
+
     Renderer::EndScene();
 
     Renderer::Flush();
@@ -77,7 +125,7 @@ bool ExampleLayer::OnKeyPressedEvent(KeyPressedEvent& e)
     {
         Application::Get().Close();
     }
-    
+
     return false;
 }
 

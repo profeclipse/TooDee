@@ -107,8 +107,8 @@ namespace TooDee {
         GLint location = glGetUniformLocation(m_rendererID,name.c_str());
         if (location < 0)
         {
-            TD_CORE_ERROR("Unknown uniform variable '{0}'",name);
-            TD_CORE_ASSERT(false,"Faled to set shader value"); 
+            TD_CORE_ERROR("{0}: Unknown uniform variable '{1}'",m_filePath,name);
+            TD_CORE_ASSERT(false,"Failed to set shader value"); 
         }
         glUniform1i(location,value);
     }
@@ -119,8 +119,8 @@ namespace TooDee {
         GLint location = glGetUniformLocation(m_rendererID,name.c_str());
         if (location < 0)
         {
-            TD_CORE_ERROR("Unknown uniform variable '{0}'",name);
-            TD_CORE_ASSERT(false,"Faled to set shader value"); 
+            TD_CORE_ERROR("{0}: Unknown uniform variable '{1}'",m_filePath,name);
+            TD_CORE_ASSERT(false,"Failed to set shader value"); 
         }
         glUniform1iv(location,count,values);
     }
@@ -130,8 +130,8 @@ namespace TooDee {
         GLint location = glGetUniformLocation(m_rendererID,name.c_str());
         if (location < 0)
         {
-            TD_CORE_ERROR("Unknown uniform variable '{0}'",name);
-            TD_CORE_ASSERT(false,"Faled to set shader value"); 
+            TD_CORE_ERROR("{0}: Unknown uniform variable '{1}'",m_filePath,name);
+            TD_CORE_ASSERT(false,"Failed to set shader value"); 
         }
         glUniform1f(location,value);
     }
@@ -141,8 +141,8 @@ namespace TooDee {
         GLint location = glGetUniformLocation(m_rendererID,name.c_str());
         if (location < 0)
         {
-            TD_CORE_ERROR("Unknown uniform variable '{0}'",name);
-            TD_CORE_ASSERT(false,"Faled to set shader value"); 
+            TD_CORE_ERROR("{0}: Unknown uniform variable '{1}'",m_filePath,name);
+            TD_CORE_ASSERT(false,"Failed to set shader value"); 
         }
         glUniform2f(location,value.x,value.y);
     }
@@ -152,8 +152,8 @@ namespace TooDee {
         GLint location = glGetUniformLocation(m_rendererID,name.c_str());
         if (location < 0)
         {
-            TD_CORE_ERROR("Unknown uniform variable '{0}'",name);
-            TD_CORE_ASSERT(false,"Faled to set shader value"); 
+            TD_CORE_ERROR("{0}: Unknown uniform variable '{1}'",m_filePath,name);
+            TD_CORE_ASSERT(false,"Failed to set shader value"); 
         }
         glUniform3f(location,value.x,value.y,value.z);
     }
@@ -163,8 +163,8 @@ namespace TooDee {
         GLint location = glGetUniformLocation(m_rendererID,name.c_str());
         if (location < 0)
         {
-            TD_CORE_ERROR("Unknown uniform variable '{0}'",name);
-            TD_CORE_ASSERT(false,"Faled to set shader value"); 
+            TD_CORE_ERROR("{0}: Unknown uniform variable '{1}'",m_filePath,name);
+            TD_CORE_ASSERT(false,"Failed to set shader value"); 
         }
         glUniform4f(location,value.x,value.y,value.z,value.w);
     }
@@ -174,8 +174,8 @@ namespace TooDee {
         GLint location = glGetUniformLocation(m_rendererID,name.c_str());
         if (location < 0)
         {
-            TD_CORE_ERROR("Unknown uniform variable '{0}'",name);
-            TD_CORE_ASSERT(false,"Faled to set shader value"); 
+            TD_CORE_ERROR("{0}: Unknown uniform variable '{1}'",m_filePath,name);
+            TD_CORE_ASSERT(false,"Failed to set shader value"); 
         }
         glUniformMatrix3fv(location,1,GL_FALSE,glm::value_ptr(matrix));
     }
@@ -185,8 +185,8 @@ namespace TooDee {
         GLint location = glGetUniformLocation(m_rendererID,name.c_str());
         if (location < 0)
         {
-            TD_CORE_ERROR("Unknown uniform variable '{0}'",name);
-            TD_CORE_ASSERT(false,"Faled to set shader value"); 
+            TD_CORE_ERROR("{0}: Unknown uniform variable '{1}'",m_filePath,name);
+            TD_CORE_ASSERT(false,"Failed to set shader value"); 
         }
         glUniformMatrix4fv(location,1,GL_FALSE,glm::value_ptr(matrix));
     }
@@ -291,7 +291,7 @@ namespace TooDee {
                 if (fragmentShader != 0)
                     glDeleteShader(fragmentShader);
 
-                TD_CORE_ERROR("{0}",infoLog.data());
+                TD_CORE_ERROR("{0}: {1}",m_filePath,infoLog.data());
                 if (stage == GL_VERTEX_SHADER)
                     TD_CORE_ASSERT(false,"Failed to compile vertex shader!");
                 else
@@ -328,7 +328,7 @@ namespace TooDee {
             glDeleteShader(vertexShader);
             glDeleteShader(fragmentShader);
 
-            TD_CORE_ERROR("{0}",infoLog.data());
+            TD_CORE_ERROR("{0}: {1}",m_filePath,infoLog.data());
             TD_CORE_ASSERT(false,"Shader link failure!");
             return;
         }

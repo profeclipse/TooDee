@@ -26,6 +26,7 @@
 
 #include "TooDee/Renderer/Buffer.h"
 #include "TooDee/Renderer/Shader.h"
+#include "TooDee/Renderer/Texture.h"
 #include "TooDee/Renderer/VertexArray.h"
 #include "TooDee/Renderer/OrthographicCamera.h"
 
